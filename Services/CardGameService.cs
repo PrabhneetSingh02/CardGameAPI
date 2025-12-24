@@ -1,4 +1,5 @@
 using CardGameAPI.Models;
+using System.Runtime.InteropServices;
 
 namespace CardGameAPI.Services
 {
@@ -39,8 +40,7 @@ namespace CardGameAPI.Services
 
         public void Shuffle()
         {
-            var random = new Random();
-            _deck = _deck.OrderBy(x => random.Next()).ToList();
+            Random.Shared.Shuffle(CollectionsMarshal.AsSpan(_deck));
         }
 
         public void Restart()
